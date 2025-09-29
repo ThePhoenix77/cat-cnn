@@ -1,0 +1,98 @@
+cnns are a subset of machine learning(deep learning) used mostly in the object detection and images classification.
+despite there is existing other neural networks, the cnn is often utilized in computer vision tasks.
+so how does this cnn work?
+easy
+all cnns have three mandatory steps:
+    - the convolutional layer
+        requiring ofc the data input, a filter (think of it as a sliding window) and a map.
+        assuming we have a basic colored image, it will have 3 dimensions, a 2 dimensions for the width and height of the image;
+        and the third dimension is the depth dimension (colors aka RGB), and let's not forget we also have the feature detector
+        in this layer, whick in our case of cats, it will be features like cat whisks or pointy ears (you get the idea).
+        this whole process is what's called convolution(def: "a coil or twist."), combining two functions to produce one.
+        P.S: other convolutional layers can be added.
+
+    - the pooling layer
+        as simple as it can be explained, it's a step we do to reduce complexity, altough we lose informations, but we improve efficiency
+        by sliding over the picture choosing always the pixel with max value(max pooling in our case), just to avoid the risk of
+        overfitting(your neural network will be only perform best on your training set but unfortunaltly badly on new testing steps)
+
+    - the FC(fully conneted) layer
+        in the fc layer, each node in the output layer is connected to a node in the previous one. also leveraging a softmax activation function
+        to produce the probability of either 0 or a 1(cat or not cat).
+
+
+
+- I - 
+first step in our project is to define the basic math functions that we will use, why?
+so we can have a better grasp and understanding of the cnn, its mechanism, how it really works behind the scene, step by step, gear by gear.
+the functions we will use are called activation function, which we are going to use and their derivatives, each one with its own role,
+and they are:
+    - the sigmoid function
+        f(x) = 1 / (1 + exp(-x))
+        think of it as just a soft switch going from 0 to 1.
+        and its derivative being
+        f'(x) = f(x)(1 - f(x))
+    
+    - the ReLu function
+                  - x  if (x > 0)
+                 |
+        f(x) = --                   so basically it's max(0, x)
+                 |
+                  - 0  if (x < 0)
+        
+        and its derivative being
+                  - 1  if (x > 0)
+                 |
+        f'(x) = --                   so basically it's (x > 0) ? 1 : 0
+                 |
+                  - 0  if (x < 0)
+
+other than the activation functions, we have what we call the loss functions, which in our case, we will be using the bce(binary cross entropy) loss function.
+it measures the difference between the predicted value being y^ and the value we have y.
+
+    bce: L(y, y^) = -(y.log(y^) + (1 - y).log(1 - y^)) ;    L is for loss, where:
+                                                            y exists in {0, 1} and
+                                                            y^ exists in {0, 1}
+with that being said, if y = 1  ==>  L = -log(y^)   and
+                      if y = 0  ==>  L = -log(1 - y^) ; 
+so the closer y^ to 1 or 0, the smaller the loss
+
+and to see the average loss for a datasetof n samples will be:
+    J = -1/n ∑(yi.​log(y^​i​) + (1 − yi​)log(1 − y^​i​))  ; with i = 1 to n
+
+- II - 
+now wea re going to see the core of cnns, convolution.
+with that being said, the convolution in a cnn is the process of passing a kernel(filter /sliding window) over an image to generate a simpler mini image
+of the first one, you may ask the why, and aren't we gonna loose some image details, and it's yes, but this cost comes with a greater good, making the
+training much faster, highlighting the features in the images in each iteration.
+in our case, the kernel we used is ...
+
+- III -
+comes the max pooling step, unlike the convolutional step, we here just take the max value of an n stride(sliding square), just to keep the important features, like edges or repeating patterns.
+so while convolution learns features, the max pooling comes to reduce the feature map size by keeping the strongest signals.
+
+- IV -
+we now have seen what does the "convolutional" term mean in a cnn, let's see now the nn(neural network).
+a neural network is a connected dense layer, where every input neuron is connected to an output neuron.
+a neuron is just a function:
+                y = W.x + b  ;  where W is weight matrix
+                                x is input vector
+                                y is output vector
+                                and b is the bias vector
+and repeating the y from one neuron layer to the next one is called the forward pass or forward propagation.
+
+- V -
+now the neural network to actually "learn", aka training step;
+we use the backpropagation, where we compte the gradients of the loss wit respect to the layer W(weight) and b(bias)
+let's say we have an upstream gradient from the next layer as dL/dy(derivative of the loss with respect of the output y layer)
+
+   x -----> [ Dense Layer ] -----> y -----> [ Next Layer ] -----> Loss
+                     ↑
+           backprop sends dL/dy here
+
+- VI -
+in order to update each time the W and b of each neural layer;
+we use the gradient descent:
+                θ:=θ−η⋅∂L/∂θ​  ;  where θ is the weights or biases
+                                η is the learning rate
+                                and ∂L/∂θ is the gradient of the loss w.r.t 𝜃

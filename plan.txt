@@ -1,0 +1,13 @@
+importing required libraries
+implementic basic math functions from scratch
+implementing the convolution operation
+max pooling
+implementing the dense layer
+forward propagation
+bachward propagation for all layers
+gradient descent
+data loading
+training the cnn
+implementing the simple image input sys
+answer display
+improvements if needed
