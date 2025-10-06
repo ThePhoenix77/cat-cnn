@@ -16,4 +16,4 @@ def load_data(folder_cat, folder_noncat, img_size=(64, 64)):
         X.append(np.array(img) / 255.0)
         y.append(0)                                                             #non-cat label
     
-    return np.array(x), np.array(y)
+    return np.array(X), np.array(y)
