@@ -39,13 +39,12 @@ def max_pool_backward(dL_dy, x, size=2, stride=2):
     h, w = x.shape
     out_h, out_w = dL_dy.shape
     dL_dx = np.zeros_like(x)
+
     for i in range(out_h):
         for j in range(out_w):
             region = x[i*stride:i*stride+size, j*stride:j*stride+size]
             max_val = np.max(region)
-            for m in range(size):
-                for n in range(size):
-                    if region[m, n] == max_val:
-                        dL_dx[i*stride+m, j*stride+n] = dL_dy[i, j]
-                        break
+            mask = (region == max_val)
+            dL_dx[i*stride:i*stride+size, j*stride:j*stride+size] += mask * (dL_dy[i, j] / np.sum(mask))
+
     return dL_dx
