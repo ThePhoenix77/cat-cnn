@@ -252,6 +252,37 @@ This creates PNG files showing:
 
 The output is saved into the chosen directory and can be opened like normal images.
 
+## Animated Neuron Network (Abstract)
+
+You can also generate an abstract animated neuron view that uses actual values from your trained model prediction.
+
+### 1) Export activation data from a real prediction
+
+```bash
+SAMPLE=$(find data/cats -type f | head -n 1)
+python export_animation_data.py "$SAMPLE" --model-path final_cnn_model.npz --output-json visualizations/network_animation_data.json
+```
+
+### 2) Open the animation page
+
+Open the file `network_animation.html` in your browser.
+
+- It will try to load `visualizations/network_animation_data.json` by default.
+- If blocked by browser file permissions, run a local server:
+
+```bash
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000/network_animation.html`.
+
+The page animates each layer as abstract neurons where:
+
+- node size/glow tracks activation magnitude
+- color encodes sign (positive/negative)
+- animated links indicate signal flow between layers
+- output panel shows final prediction and probability
+
 ### Example outputs
 
 | Input | Conv1 |
@@ -301,6 +332,12 @@ The output is saved into the chosen directory and can be opened like normal imag
 - `--model-path` — saved `.npz` model file, default `final_cnn_model.npz`
 - `--output-dir` — folder to write PNG visualizations, default `visualizations`
 
+### `export_animation_data.py`
+
+- `image_path` — image to inspect for animation data
+- `--model-path` — saved `.npz` model file, default `final_cnn_model.npz`
+- `--output-json` — output JSON data for animation, default `visualizations/network_animation_data.json`
+
 ## Saved Model Format
 
 The saved `.npz` file stores the learned parameters:
@@ -315,7 +352,7 @@ The saved `.npz` file stores the learned parameters:
 - Convolution and pooling are implemented manually in Python/Numpy.
 - Backpropagation is also implemented manually for learning purposes.
 - `sigmoid` and other math helpers are vectorized with NumPy.
-- The `visualize_model.py` is the only file implemented using ai assisted synthesis.
+- The `visualize_model.py` and the `network_animation.html` are the only files implemented using ai assisted synthesis(vibe-coded).
 - The project is small enough to understand end-to-end, but it is not optimized for performance.
 
 ## Current Status
