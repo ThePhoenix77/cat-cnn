@@ -1,18 +1,17 @@
-import math
 import numpy as np
 
 def sigmoid(x):
-    return (1 / (1 + math.exp(-x)))
+    return 1 / (1 + np.exp(-x))
 
 def sigmoid_prime(x):
     s = sigmoid(x)
     return s * (1 - s)
 
 def relu(x):
-    return max(0, x)
+    return np.maximum(0, x)
 
 def relu_prime(x):
-    return 1 if x > 0 else 0
+    return np.where(x > 0, 1, 0)
 
 def bce(y, y_hat):
     epsilon = 1e-15                                                         #smallest possible value close to 0, to avoid it

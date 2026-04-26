@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment and secrets
+.env
+.env.*
+kaggle/
+
+# Data and training artifacts
+data/
+data_raw/
+*.npz
+*.h5
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/

@@ -1,2 +1,6 @@
 numpy
 Pillow
+
+# Optional but supported by the project workflow
+kaggle
+h5py
