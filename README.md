@@ -27,9 +27,9 @@ The model is intentionally small:
 
 The goal is not state-of-the-art accuracy. The goal is to show how a CNN can be implemented end-to-end using only NumPy for math and Pillow for image handling.
 
-## CNN Concept, Briefly
+## CNN Concept
 
-A convolutional neural network works by learning filters that respond to local patterns in an image.
+Briefly, a convolutional neural network works by learning filters that respond to local patterns in an image.
 
 ### Convolution
 
@@ -224,6 +224,57 @@ You will be prompted for an image path. The image will be resized to 64×64, con
 
 Press `Ctrl+C` or send EOF to exit.
 
+## Visualizing the Network
+
+You can generate activation and weight-map images for a single prediction:
+
+```bash
+python visualize_model.py path/to/image.jpg --model-path final_cnn_model.npz --output-dir visualizations
+```
+
+Quick example using one of the prepared training images:
+
+```bash
+SAMPLE=$(find data/cats -type f | head -n 1)
+python visualize_model.py "$SAMPLE" --model-path final_cnn_model.npz --output-dir visualizations
+open visualizations
+```
+
+This creates PNG files showing:
+
+- the input image
+- `conv1` activations
+- `pool1` activations
+- `conv2` activations
+- `pool2` activations
+- the dense-layer weight map reshaped to the pooled feature size
+- a summary image with the predicted label and probability
+
+The output is saved into the chosen directory and can be opened like normal images.
+
+### Example outputs
+
+| Input | Conv1 |
+|---|---|
+| ![Input image](visualizations/input.png) | ![Conv1 activations](visualizations/conv1.png) |
+
+| Pool1 | Conv2 |
+|---|---|
+| ![Pool1 activations](visualizations/pool1.png) | ![Conv2 activations](visualizations/conv2.png) |
+
+| Pool2 | Dense weights |
+|---|---|
+| ![Pool2 activations](visualizations/pool2.png) | ![Dense weights](visualizations/dense_weights.png) |
+
+| Feature grid |
+|---|
+| ![Feature grid](visualizations/feature_grid.png) |
+
+| Summary |
+|---|
+| ![Summary](visualizations/summary.png) |
+
+
 ## CLI Reference
 
 ### `main.py`
@@ -244,6 +295,12 @@ Press `Ctrl+C` or send EOF to exit.
 - `--max-per-class` — cap images per class, default `300`
 - `--seed` — random seed, default `42`
 
+### `visualize_model.py`
+
+- `image_path` — image to inspect
+- `--model-path` — saved `.npz` model file, default `final_cnn_model.npz`
+- `--output-dir` — folder to write PNG visualizations, default `visualizations`
+
 ## Saved Model Format
 
 The saved `.npz` file stores the learned parameters:
@@ -258,6 +315,7 @@ The saved `.npz` file stores the learned parameters:
 - Convolution and pooling are implemented manually in Python/Numpy.
 - Backpropagation is also implemented manually for learning purposes.
 - `sigmoid` and other math helpers are vectorized with NumPy.
+- The `visualize_model.py` is the only file implemented using ai assisted synthesis.
 - The project is small enough to understand end-to-end, but it is not optimized for performance.
 
 ## Current Status

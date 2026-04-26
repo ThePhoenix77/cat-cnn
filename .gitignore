@@ -17,6 +17,7 @@ kaggle/
 # Data and training artifacts
 data/
 data_raw/
+visualizations/
 *.npz
 *.h5
 
