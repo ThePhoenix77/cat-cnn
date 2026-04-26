@@ -33,23 +33,23 @@ The goal is not state-of-the-art accuracy. The goal is to show how a CNN can be 
 
 | Input | Conv1 |
 |---|---|
-| ![Input image](visualizations/input.png) | ![Conv1 activations](visualizations/conv1.png) |
+| <img width="256" height="256" alt="input" src="https://github.com/user-attachments/assets/e2c88dab-898d-4f7d-953c-c82d2d1a3cdc" /> | <img width="256" height="256" alt="conv1" src="https://github.com/user-attachments/assets/f464a40f-352a-48c4-b68c-f3ce6eb7f9be" /> |
 
 | Pool1 | Conv2 |
 |---|---|
-| ![Pool1 activations](visualizations/pool1.png) | ![Conv2 activations](visualizations/conv2.png) |
+| <img width="256" height="256" alt="pool1" src="https://github.com/user-attachments/assets/d3afcc45-e21c-4fbd-ae2e-f312f8ea635e" /> | <img width="256" height="256" alt="conv2" src="https://github.com/user-attachments/assets/cb2d964e-2e0a-4eb6-9631-c8d82f808b59" /> |
 
 | Pool2 | Dense weights |
 |---|---|
-| ![Pool2 activations](visualizations/pool2.png) | ![Dense weights](visualizations/dense_weights.png) |
+| <img width="256" height="256" alt="pool2" src="https://github.com/user-attachments/assets/baed1b79-1329-4f98-8e9b-97fbd1306e1c" /> | <img width="256" height="256" alt="dense_weights" src="https://github.com/user-attachments/assets/bfa32d93-e94a-40d4-9551-78be7b53db42" /> |
 
 | Feature grid |
 |---|
-| ![Feature grid](visualizations/feature_grid.png) |
+| <img width="636" height="948" alt="feature_grid" src="https://github.com/user-attachments/assets/9a2f449e-6905-44e2-a592-056dfee9d9d2" /> |
 
 | Summary |
 |---|
-| ![Summary](visualizations/summary.png) |
+| <img width="800" height="120" alt="summary" src="https://github.com/user-attachments/assets/770dec69-dc0b-45b0-87cd-c9e3030040db" /> |
 
 ## CNN Concept
 
