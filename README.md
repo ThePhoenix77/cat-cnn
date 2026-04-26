@@ -250,7 +250,7 @@ Press `Ctrl+C` or send EOF to exit.
 
 ## Visualizing the Network
 
-You can generate an activation and weight-map images for a single prediction just like the image presented at the top of this readme:
+You can generate an activation and weight-map images for a single prediction just like the images presented at the top:
 
 ```bash
 python visualize_model.py path/to/image.jpg --model-path final_cnn_model.npz --output-dir visualizations
@@ -274,13 +274,13 @@ This creates PNG files showing:
 - the dense-layer weight map reshaped to the pooled feature size
 - a summary image with the predicted label and probability
 
-<img width="1262" height="929" alt="neuron-network-visualizer" src="https://github.com/user-attachments/assets/448a6234-be7d-4f2a-a7e4-0fc03500c06e" />
-
 The output is saved into the chosen directory and can be opened like normal images.
 
-## Animated Neuron Network (Abstract)
+## Animated Neuron Network(Abstract)
 
 You can also generate an abstract animated neuron view that uses actual values from your trained model prediction.
+
+<img width="1262" height="929" alt="neuron-network-visualizer" src="https://github.com/user-attachments/assets/448a6234-be7d-4f2a-a7e4-0fc03500c06e" />
 
 ### 1) Export activation data from a real prediction
 
