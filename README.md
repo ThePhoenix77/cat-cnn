@@ -1,5 +1,7 @@
 # Cat-CNN: A Convolutional Neural Network for Cat Identification
 
+<img width="1189" height="663" alt="cat-cnn-neuron-view" src="https://github.com/user-attachments/assets/fb6b060b-4a97-4fcb-8e01-1e7617621a90" />
+
 A convolutional neural network for binary "cat vs not-cat" classification.
 
 This repository is my playground where I built a CNN from scratch (NumPy + Pillow) without relying on any deep learning framework. Iterating on data loading, training, evaluation and small UX utilities. It started as exercises from Andrew Ng's deep learning materials plus some independent reading/tutorials, and I iterated on it with a bit of automated help.
@@ -26,6 +28,28 @@ The model is intentionally small:
 - sigmoid output for probability scoring
 
 The goal is not state-of-the-art accuracy. The goal is to show how a CNN can be implemented end-to-end using only NumPy for math and Pillow for image handling.
+
+## Example outputs
+
+| Input | Conv1 |
+|---|---|
+| ![Input image](visualizations/input.png) | ![Conv1 activations](visualizations/conv1.png) |
+
+| Pool1 | Conv2 |
+|---|---|
+| ![Pool1 activations](visualizations/pool1.png) | ![Conv2 activations](visualizations/conv2.png) |
+
+| Pool2 | Dense weights |
+|---|---|
+| ![Pool2 activations](visualizations/pool2.png) | ![Dense weights](visualizations/dense_weights.png) |
+
+| Feature grid |
+|---|
+| ![Feature grid](visualizations/feature_grid.png) |
+
+| Summary |
+|---|
+| ![Summary](visualizations/summary.png) |
 
 ## CNN Concept
 
@@ -226,7 +250,7 @@ Press `Ctrl+C` or send EOF to exit.
 
 ## Visualizing the Network
 
-You can generate activation and weight-map images for a single prediction:
+You can generate an activation and weight-map images for a single prediction just like the image presented at the top of this readme:
 
 ```bash
 python visualize_model.py path/to/image.jpg --model-path final_cnn_model.npz --output-dir visualizations
@@ -249,6 +273,8 @@ This creates PNG files showing:
 - `pool2` activations
 - the dense-layer weight map reshaped to the pooled feature size
 - a summary image with the predicted label and probability
+
+<img width="1262" height="929" alt="neuron-network-visualizer" src="https://github.com/user-attachments/assets/448a6234-be7d-4f2a-a7e4-0fc03500c06e" />
 
 The output is saved into the chosen directory and can be opened like normal images.
 
@@ -282,29 +308,6 @@ The page animates each layer as abstract neurons where:
 - color encodes sign (positive/negative)
 - animated links indicate signal flow between layers
 - output panel shows final prediction and probability
-
-### Example outputs
-
-| Input | Conv1 |
-|---|---|
-| ![Input image](visualizations/input.png) | ![Conv1 activations](visualizations/conv1.png) |
-
-| Pool1 | Conv2 |
-|---|---|
-| ![Pool1 activations](visualizations/pool1.png) | ![Conv2 activations](visualizations/conv2.png) |
-
-| Pool2 | Dense weights |
-|---|---|
-| ![Pool2 activations](visualizations/pool2.png) | ![Dense weights](visualizations/dense_weights.png) |
-
-| Feature grid |
-|---|
-| ![Feature grid](visualizations/feature_grid.png) |
-
-| Summary |
-|---|
-| ![Summary](visualizations/summary.png) |
-
 
 ## CLI Reference
 
