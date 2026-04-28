@@ -135,9 +135,7 @@ The loader:
 
 ## Kaggle Dataset Workflow
 
-The project supports a Kaggle dataset such as:
-
-- `sagar2522/cat-vs-non-cat`
+In my model training I used `sagar2522/cat-vs-non-cat` Kaggle dataset that you can find [here](https://www.kaggle.com/datasets/sagar2522/cat-vs-non-cat).
 
 ### 1) Add Kaggle credentials
 
